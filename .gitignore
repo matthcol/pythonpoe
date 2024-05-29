@@ -1,0 +1,8 @@
+.env
+.ipynb_checkpoints/
+__pycache__/
+*.7z
+data/Photos/
+photos/
+data/cities.json
+data/cities_gouv.csv
