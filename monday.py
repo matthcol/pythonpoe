@@ -1,12 +1,12 @@
 import numpy as np
 
-class Shape:
+class Shаpe:
     pass
 
 
 if __name__ == '__main__':
-    s1 = Shape()
-    s2 = Shape()
+    s1 = Shаpe()
+    s2 = Shаpe()
     a = np.zeros((1000, 1000))
     for o in s1, s2, a:
         print(o)
