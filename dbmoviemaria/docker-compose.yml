@@ -1,0 +1,18 @@
+volumes:
+  dbstorage:
+    name: ${DB_DATA_VOLUME:-maria-dbmovie-data}
+
+services:
+  db:
+    image: mariadb:${DB_TAG:-latest}
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DBNAME:-dbmovie}
+      MYSQL_USER: ${DB_USER:-movie}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-password}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-password}
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - dbstorage:/var/lib/mysql
+    ports:
+      - ${DB_PORT:-3306}:3306
