@@ -1,8 +1,10 @@
 from sqlalchemy import Column, Integer, String
 
-class Movie:
+from app.database import Base
+
+class Movie(Base):
     __tablename__ = 'movie'
-    
+
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(length=300), nullable=False, )
     year = Column(Integer, nullable=False)

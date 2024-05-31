@@ -22,7 +22,7 @@ def get_db():
 
 
 @app.get("/movie/", response_model=List[schema.Movie])
-async def get_all(db: Session = Depends(get_db)):
+def get_all(db: Session = Depends(get_db)):
     return crud.get_all(db)
 
 # @app.get("/")
