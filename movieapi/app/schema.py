@@ -4,6 +4,7 @@ class MovieCreate(BaseModel):
     title: str
     year: int
     duration: int | None
+    poster_uri: str | None
 
 class Movie(MovieCreate):
     id: int

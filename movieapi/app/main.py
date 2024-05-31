@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from app import crud
 import app.schema as schema
 from sqlalchemy.orm import Session
@@ -24,6 +24,17 @@ def get_db():
 @app.get("/movie/", response_model=List[schema.Movie])
 def get_all(db: Session = Depends(get_db)):
     return crud.get_all(db)
+
+@app.get("/movie/{movie_id}", response_model=schema.Movie)
+def get_by_id(movie_id: int, db: Session = Depends(get_db)):
+    movie =  crud.get_by_id(db, movie_id=movie_id)
+    if movie is None:
+        raise HTTPException(status_code=404, detail=f"Movie not found: {movie_id}")
+    return movie
+
+@app.post("/movie/", response_model=schema.Movie)
+async def add(movie: schema.MovieCreate, db: Session = Depends(get_db)):
+    return crud.save(db, movie)
 
 # @app.get("/")
 # async def get_one() -> schema.Movie:

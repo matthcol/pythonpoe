@@ -9,3 +9,4 @@ class Movie(Base):
     title = Column(String(length=300), nullable=False, )
     year = Column(Integer, nullable=False)
     duration = Column(Integer, nullable=True)
+    poster_uri = Column(String(length=300), nullable=True)
