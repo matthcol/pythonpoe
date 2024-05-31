@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 import app.schema as schema
 
@@ -13,5 +14,14 @@ async def get_two():
     return { "title": 'Dune: Part One', "year": 2021 }
 
 # TODO: fun returning several movies
+@app.get("/all", response_model=List[schema.Movie])
+async def get_all():
+    return [
+         schema.Movie(title='Dune: Part Two', year=2024),
+          { "title": 'Dune: Part One', "year": 2021 },
+    ]
 
 # TODO: fun receiving a Movie
+@app.post("/")
+async def add(movie: schema.Movie):
+    return True
