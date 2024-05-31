@@ -7,3 +7,6 @@ class MovieCreate(BaseModel):
 
 class Movie(MovieCreate):
     id: int
+
+    class Config:
+        orm_mode = True
