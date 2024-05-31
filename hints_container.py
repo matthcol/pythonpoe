@@ -1,12 +1,13 @@
 import re
-from typing import List
+from typing import List, Any, Tuple, Dict
 
-def sanitize_cities_fr(cities: List[str]):
+def sanitize_cities_fr(cities: List[str]) -> List[str]:
     return list(filter(
         lambda city: re.match(r"[a-z ]+", city, flags=re.I),
         (city.strip() for city in cities)
     ))
 
+# cities: List[str] = [
 cities = [
     " Pau",
     "Toulouse\n",
