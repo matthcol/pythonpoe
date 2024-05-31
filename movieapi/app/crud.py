@@ -17,7 +17,7 @@ def get_by_id(db: Session, movie_id: int):
     return db.query(entity.Movie).get(movie_id)
 
 def get_by_year(db: Session, year: int):
-    return db.query(entity.Movie).filter(entity.Movie.year == year)
+    return db.query(entity.Movie).filter(entity.Movie.year == year).all()
 
 def get_by_title(db: Session, title: str):
     return db.query(entity.Movie).filter(func.lower(entity.Movie.title).contains(func.lower(title))).all()

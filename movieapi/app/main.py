@@ -25,6 +25,14 @@ def get_db():
 def get_all(db: Session = Depends(get_db)):
     return crud.get_all(db)
 
+@app.get("/movie/by_year", response_model=List[schema.Movie])
+def get_by_year(year: int, db: Session = Depends(get_db)):
+    return crud.get_by_year(db, year=year)
+
+@app.get("/movie/by_title", response_model=List[schema.Movie])
+def get_by_title(t: str, db: Session = Depends(get_db)):
+    return crud.get_by_title(db, title=t)
+
 @app.get("/movie/{movie_id}", response_model=schema.Movie)
 def get_by_id(movie_id: int, db: Session = Depends(get_db)):
     movie =  crud.get_by_id(db, movie_id=movie_id)
